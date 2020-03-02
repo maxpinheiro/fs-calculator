@@ -10,23 +10,21 @@
         <!-- <script language="javascript" src="sketch.js"></script> -->
 
         <!-- Navigation Tabs -->
-        <nav>
-            <div class="nav-tabs">
-                <a class="nav-tab" href=#jumps>Jumps</a>
-                <a class="nav-tab" href=#spins>Spins</a>
-                <a class="nav-tab" href=#sequences>Sequences</a>
-            </div>
-        </nav>
+        <div class="nav-tabs">
+            <button type="button" class="tab" onclick="setPage('jumps')">Jumps</button>
+            <button type="button" class="tab" onclick="setPage('spins')">Spins</button>
+            <button type="button" class="tab" onclick="setPage('sequences')">Sequences</button>
+        </div>
 
         <!-- Jump Buttons -->
-        <div id="jumps">
+        <div class="tab-content" id="jumps">
             <h4> Add Jump </h4>
 
             <h6> Type </h6>
 
             <div class="jump-type"> 
                 <button type="button" class="std-button">A</button>
-                <button type="button" class="std-button">S</button>
+                <button type="button" class="std-button" onclick="log('A')">S</button>
                 <button type="button" class="std-button">T</button>
                 <button type="button" class="std-button">Lo</button>
                 <button type="button" class="std-button">F</button>
@@ -69,7 +67,7 @@
             </div>
         </div>
         <!-- Spin Buttons -->
-        <div id="spins">
+        <div class="tab-content" id="spins">
                 <h4> Add Spin </h4>
 
                 <h6> Type </h6>
@@ -117,8 +115,8 @@
                     <button type="button" class="std-button">+5</button>
                 </div>
         </div>
-        <!-- Spin Buttons -->
-        <div id="sequences">
+        <!-- Sequence Buttons -->
+        <div class="tab-content" id="sequences">
             <h4> Add Step Sequence </h4>
 
             <h6> Level </h6>
