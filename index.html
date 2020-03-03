@@ -4,10 +4,16 @@
         <title>Technical Element Score (TES) Calculator</title>
         <script language = "javascript" src = "../p5.js"> </script>
         <script src = "sketch.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-        <!-- <button type="button">Click here!</button> -->
-        <!-- <script language="javascript" src="sketch.js"></script> -->
+
+        <h1> TES Calculator </h1>
+
+        <!-- Selected Element and GOE -->
+        <div id="element-display">
+            <span id="selected-element">Element</span> <span id="selected-goe">GOE</span>
+        </div>
 
         <!-- Navigation Tabs -->
         <div class="nav-tabs">
@@ -17,7 +23,7 @@
         </div>
 
         <!-- Jump Buttons -->
-        <div class="tab-content" id="jumps">
+        <div class="tab-content" id="jumps" style="display:block">
             <h4> Add Jump </h4>
 
             <h6> Type </h6>
@@ -53,21 +59,21 @@
             <h6> GOE </h6>
 
             <div class="jump-goe">
-                <button type="button" class="std-button">-5</button>
-                <button type="button" class="std-button">-4</button>
-                <button type="button" class="std-button">-3</button>
-                <button type="button" class="std-button">-2</button>
-                <button type="button" class="std-button">-1</button>
-                <button type="button" class="std-button">0</button>
-                <button type="button" class="std-button">+1</button>
-                <button type="button" class="std-button">+2</button>
-                <button type="button" class="std-button">+3</button>
-                <button type="button" class="std-button">+4</button>
-                <button type="button" class="std-button">+5</button>
+                <button type="button" class="std-button" onclick="setGOE(-5)">-5</button>
+                <button type="button" class="std-button" onclick="setGOE(-4)">-4</button>
+                <button type="button" class="std-button" onclick="setGOE(-3)">-3</button>
+                <button type="button" class="std-button" onclick="setGOE(-2)">-2</button>
+                <button type="button" class="std-button" onclick="setGOE(-1)">-1</button>
+                <button type="button" class="std-button" onclick="setGOE(0)">0</button>
+                <button type="button" class="std-button" onclick="setGOE(1)">+1</button>
+                <button type="button" class="std-button" onclick="setGOE(2)">+2</button>
+                <button type="button" class="std-button" onclick="setGOE(3)">+3</button>
+                <button type="button" class="std-button" onclick="setGOE(4)">+4</button>
+                <button type="button" class="std-button" onclick="setGOE(5)">+5</button>
             </div>
         </div>
         <!-- Spin Buttons -->
-        <div class="tab-content" id="spins">
+        <div class="tab-content" id="spins" style="display:none">
                 <h4> Add Spin </h4>
 
                 <h6> Type </h6>
@@ -102,21 +108,21 @@
                 <h6> GOE </h6>
     
                 <div class="spin-goe">
-                    <button type="button" class="std-button">-5</button>
-                    <button type="button" class="std-button">-4</button>
-                    <button type="button" class="std-button">-3</button>
-                    <button type="button" class="std-button">-2</button>
-                    <button type="button" class="std-button">-1</button>
-                    <button type="button" class="std-button">0</button>
-                    <button type="button" class="std-button">+1</button>
-                    <button type="button" class="std-button">+2</button>
-                    <button type="button" class="std-button">+3</button>
-                    <button type="button" class="std-button">+4</button>
-                    <button type="button" class="std-button">+5</button>
+                    <button type="button" class="std-button" onclick="setGOE(-5)">-5</button>
+                    <button type="button" class="std-button" onclick="setGOE(-4)">-4</button>
+                    <button type="button" class="std-button" onclick="setGOE(-3)">-3</button>
+                    <button type="button" class="std-button" onclick="setGOE(-2)">-2</button>
+                    <button type="button" class="std-button" onclick="setGOE(-1)">-1</button>
+                    <button type="button" class="std-button" onclick="setGOE(0)">0</button>
+                    <button type="button" class="std-button" onclick="setGOE(1)">+1</button>
+                    <button type="button" class="std-button" onclick="setGOE(2)">+2</button>
+                    <button type="button" class="std-button" onclick="setGOE(3)">+3</button>
+                    <button type="button" class="std-button" onclick="setGOE(4)">+4</button>
+                    <button type="button" class="std-button" onclick="setGOE(5)">+5</button>
                 </div>
         </div>
         <!-- Sequence Buttons -->
-        <div class="tab-content" id="sequences">
+        <div class="tab-content" id="sequences" style="display:none">
             <h4> Add Step Sequence </h4>
 
             <h6> Level </h6>
@@ -129,7 +135,45 @@
                 <button type="button" class="std-button">4</button>
             </div>
 
+            <h6> GOE </h6>
+
+            <div class="sequence-goe">
+                <button type="button" class="std-button" onclick="setGOE(-5)">-5</button>
+                <button type="button" class="std-button" onclick="setGOE(-4)">-4</button>
+                <button type="button" class="std-button" onclick="setGOE(-3)">-3</button>
+                <button type="button" class="std-button" onclick="setGOE(-2)">-2</button>
+                <button type="button" class="std-button" onclick="setGOE(-1)">-1</button>
+                <button type="button" class="std-button" onclick="setGOE(0)">0</button>
+                <button type="button" class="std-button" onclick="setGOE(1)">+1</button>
+                <button type="button" class="std-button" onclick="setGOE(2)">+2</button>
+                <button type="button" class="std-button" onclick="setGOE(3)">+3</button>
+                <button type="button" class="std-button" onclick="setGOE(4)">+4</button>
+                <button type="button" class="std-button" onclick="setGOE(5)">+5</button>
+            </div>
+
         </div>
+
+        <!-- Add/Remove Element -->
+        <div>
+            <button type="button" class="std-button">Clear Entry</button>
+            <button type="button" class="std-button">Add Element</button>
+        </div>
+
+        <!-- Scores -->
+
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Element</th>
+                <th>Base Value</th>
+                <th>GOE</th>
+                <th>GOE Value</th>
+                <th>Score</th>
+            </tr>
+        </table>
+
+        <p><span>Technical Element Score:</span> <span id="tes-scored">0.00</span></p>
+
     </body>
     
 </html>
