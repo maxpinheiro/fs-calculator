@@ -29,12 +29,12 @@
             <h6> Type </h6>
 
             <div class="jump-type"> 
-                <button type="button" class="std-button">A</button>
-                <button type="button" class="std-button" onclick="log('A')">S</button>
-                <button type="button" class="std-button">T</button>
-                <button type="button" class="std-button">Lo</button>
-                <button type="button" class="std-button">F</button>
-                <button type="button" class="std-button">Lz</button>
+                <button type="button" class="std-button" onclick="setJump('A')">A</button>
+                <button type="button" class="std-button" onclick="setJump('S')">S</button>
+                <button type="button" class="std-button" onclick="setJump('T')">T</button>
+                <button type="button" class="std-button" onclick="setJump('Lo')">Lo</button>
+                <button type="button" class="std-button" onclick="setJump('F')">F</button>
+                <button type="button" class="std-button" onclick="setJump('Lz')">Lz</button>
             </div>
 
             <h6> Rotations </h6>
@@ -79,11 +79,11 @@
                 <h6> Type </h6>
     
                 <div class="spin-type"> 
-                    <button type="button" class="std-button">USp</button>
-                    <button type="button" class="std-button">LSp</button>
-                    <button type="button" class="std-button">CSp</button>
-                    <button type="button" class="std-button">SSp</button>
-                    <button type="button" class="std-button">CoSp</button>
+                    <button type="button" class="std-button" onclick="setSpin('USp')">USp</button>
+                    <button type="button" class="std-button" onclick="setSpin('LSp')">LSp</button>
+                    <button type="button" class="std-button" onclick="setSpin('CSp')">CSp</button>
+                    <button type="button" class="std-button" onclick="setSpin('SSp')">SSp</button>
+                    <button type="button" class="std-button" onclick="setSpin('CoSp')">CoSp</button>
                 </div>
     
                 <h6> Level </h6>
@@ -124,6 +124,12 @@
         <!-- Sequence Buttons -->
         <div class="tab-content" id="sequences" style="display:none">
             <h4> Add Step Sequence </h4>
+
+            <h6> Type </h6>
+
+            <div class="sequence-type"> 
+                <button type="button" class="std-button" onclick="setSequence('StSq')">StSq</button>
+            </div>
 
             <h6> Level </h6>
 
