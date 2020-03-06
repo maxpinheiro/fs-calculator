@@ -194,6 +194,14 @@ function addChange() {
     this.displayElement();
 }
 
+// called when V button is clicked
+function addInvalid() {
+    if (this.elmType == "spin") {
+        this.invalid = !this.invalid;
+    }
+    this.displayElement();
+}
+
 // called when x button is clicked
 function addBonus() {
     this.bonus = !this.bonus;
