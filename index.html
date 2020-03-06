@@ -40,10 +40,10 @@
             <h6> Rotations </h6>
 
             <div class="jump-rotations">
-                <button type="button" class="std-button">1</button>
-                <button type="button" class="std-button">2</button>
-                <button type="button" class="std-button">3</button>
-                <button type="button" class="std-button">4</button>
+                <button type="button" class="std-button" onclick="setLOD('1')">1</button>
+                <button type="button" class="std-button" onclick="setLOD('2')">2</button>
+                <button type="button" class="std-button" onclick="setLOD('3')">3</button>
+                <button type="button" class="std-button" onclick="setLOD('4')"">4</button>
             </div>
 
             <h6> Info </h6>
@@ -56,21 +56,6 @@
                 <button type="button" class="std-button">*</button>
             </div>
 
-            <h6> GOE </h6>
-
-            <div class="jump-goe">
-                <button type="button" class="std-button" onclick="setGOE(-5)">-5</button>
-                <button type="button" class="std-button" onclick="setGOE(-4)">-4</button>
-                <button type="button" class="std-button" onclick="setGOE(-3)">-3</button>
-                <button type="button" class="std-button" onclick="setGOE(-2)">-2</button>
-                <button type="button" class="std-button" onclick="setGOE(-1)">-1</button>
-                <button type="button" class="std-button" onclick="setGOE(0)">0</button>
-                <button type="button" class="std-button" onclick="setGOE(1)">+1</button>
-                <button type="button" class="std-button" onclick="setGOE(2)">+2</button>
-                <button type="button" class="std-button" onclick="setGOE(3)">+3</button>
-                <button type="button" class="std-button" onclick="setGOE(4)">+4</button>
-                <button type="button" class="std-button" onclick="setGOE(5)">+5</button>
-            </div>
         </div>
         <!-- Spin Buttons -->
         <div class="tab-content" id="spins" style="display:none">
@@ -89,11 +74,11 @@
                 <h6> Level </h6>
     
                 <div class="spin-level">
-                    <button type="button" class="std-button">B</button>
-                    <button type="button" class="std-button">1</button>
-                    <button type="button" class="std-button">2</button>
-                    <button type="button" class="std-button">3</button>
-                    <button type="button" class="std-button">4</button>
+                    <button type="button" class="std-button" onclick="setLOD('B')"">B</button>
+                    <button type="button" class="std-button" onclick="setLOD('1')">1</button>
+                    <button type="button" class="std-button" onclick="setLOD('2')">2</button>
+                    <button type="button" class="std-button" onclick="setLOD('3')">3</button>
+                    <button type="button" class="std-button" onclick="setLOD('4')">4</button>
                 </div>
     
                 <h6> Info </h6>
@@ -104,22 +89,7 @@
                     <button type="button" class="std-button">V</button>
                     <button type="button" class="std-button">*</button>
                 </div>
-    
-                <h6> GOE </h6>
-    
-                <div class="spin-goe">
-                    <button type="button" class="std-button" onclick="setGOE(-5)">-5</button>
-                    <button type="button" class="std-button" onclick="setGOE(-4)">-4</button>
-                    <button type="button" class="std-button" onclick="setGOE(-3)">-3</button>
-                    <button type="button" class="std-button" onclick="setGOE(-2)">-2</button>
-                    <button type="button" class="std-button" onclick="setGOE(-1)">-1</button>
-                    <button type="button" class="std-button" onclick="setGOE(0)">0</button>
-                    <button type="button" class="std-button" onclick="setGOE(1)">+1</button>
-                    <button type="button" class="std-button" onclick="setGOE(2)">+2</button>
-                    <button type="button" class="std-button" onclick="setGOE(3)">+3</button>
-                    <button type="button" class="std-button" onclick="setGOE(4)">+4</button>
-                    <button type="button" class="std-button" onclick="setGOE(5)">+5</button>
-                </div>
+                
         </div>
         <!-- Sequence Buttons -->
         <div class="tab-content" id="sequences" style="display:none">
@@ -134,35 +104,37 @@
             <h6> Level </h6>
 
             <div class="sequence-level">
-                <button type="button" class="std-button">B</button>
-                <button type="button" class="std-button">1</button>
-                <button type="button" class="std-button">2</button>
-                <button type="button" class="std-button">3</button>
-                <button type="button" class="std-button">4</button>
-            </div>
-
-            <h6> GOE </h6>
-
-            <div class="sequence-goe">
-                <button type="button" class="std-button" onclick="setGOE(-5)">-5</button>
-                <button type="button" class="std-button" onclick="setGOE(-4)">-4</button>
-                <button type="button" class="std-button" onclick="setGOE(-3)">-3</button>
-                <button type="button" class="std-button" onclick="setGOE(-2)">-2</button>
-                <button type="button" class="std-button" onclick="setGOE(-1)">-1</button>
-                <button type="button" class="std-button" onclick="setGOE(0)">0</button>
-                <button type="button" class="std-button" onclick="setGOE(1)">+1</button>
-                <button type="button" class="std-button" onclick="setGOE(2)">+2</button>
-                <button type="button" class="std-button" onclick="setGOE(3)">+3</button>
-                <button type="button" class="std-button" onclick="setGOE(4)">+4</button>
-                <button type="button" class="std-button" onclick="setGOE(5)">+5</button>
+                <button type="button" class="std-button" onclick="setLOD('B')">B</button>
+                <button type="button" class="std-button" onclick="setLOD('1')">1</button>
+                <button type="button" class="std-button" onclick="setLOD('2')">2</button>
+                <button type="button" class="std-button" onclick="setLOD('3')">3</button>
+                <button type="button" class="std-button" onclick="setLOD('4')">4</button>
             </div>
 
         </div>
 
+        <!-- GOE -->
+
+        <h6> GOE </h6>
+
+        <div class="sequence-goe">
+            <button type="button" class="std-button" onclick="setGOE(-5)">-5</button>
+            <button type="button" class="std-button" onclick="setGOE(-4)">-4</button>
+            <button type="button" class="std-button" onclick="setGOE(-3)">-3</button>
+            <button type="button" class="std-button" onclick="setGOE(-2)">-2</button>
+            <button type="button" class="std-button" onclick="setGOE(-1)">-1</button>
+            <button type="button" class="std-button" onclick="setGOE(0)">0</button>
+            <button type="button" class="std-button" onclick="setGOE(1)">+1</button>
+            <button type="button" class="std-button" onclick="setGOE(2)">+2</button>
+            <button type="button" class="std-button" onclick="setGOE(3)">+3</button>
+            <button type="button" class="std-button" onclick="setGOE(4)">+4</button>
+            <button type="button" class="std-button" onclick="setGOE(5)">+5</button>
+        </div>
+
         <!-- Add/Remove Element -->
         <div>
-            <button type="button" class="std-button">Clear Entry</button>
-            <button type="button" class="std-button">Add Element</button>
+            <button type="button" class="std-button" onclick="clearElement()">Clear Entry</button>
+            <button type="button" class="std-button" onclick="addElement()">Add Element</button>
         </div>
 
         <!-- Scores -->
