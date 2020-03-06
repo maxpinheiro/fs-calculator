@@ -129,10 +129,17 @@ function displayElement() {
 
 // called when clear element button is clicked
 function clearElement() {
+    this.currentElement = "";
     this.type = "";
     this.lod = 0;
     this.goe = 0;
-    this.currentElement = "";
+    this.under = false;
+    this.downgrade = false;
+    this.edgeCall = false;
+    this.fly = false;
+    this.change = false;
+    this.invalid = false;
+    this.bonus = false;
 
     this.displayElement();
 }
