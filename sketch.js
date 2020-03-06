@@ -5,11 +5,13 @@ var elmType = "jump";
 var type = "";
 var lod = 0;
 var goe = 0;
+// info variables
+var under = false;
+var downgrade = false;
+var edgeCall = false;
+var fly = false;
+var change = false;
 
-
-function log(message) {
-    console.log(message);
-}
 
 // called when a navigation tab is clicked: hides all tabs, displays the tab with the id tabName
 function setPage(tabName) {
@@ -97,6 +99,7 @@ function displayElement() {
 
 }
 
+// called when clear element button is clicked
 function clearElement() {
     this.elmType = "";
     this.type = "";
@@ -107,6 +110,16 @@ function clearElement() {
     this.displayElement();
 }
 
+// called when add element button is clicked
 function addElement() {
+
+}
+
+// returns the score of the current element
+function calculateScore() {
+
+}
+
+function addToTable() {
 
 }
