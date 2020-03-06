@@ -172,7 +172,7 @@ function addDowngrade() {
 
 // called when e button is clicked
 function addEdgeCall() {
-    if (this.elmType == "jump") {
+    if (this.elmType == "jump" && (this.type == 'F' || this.type == 'Lz')) {
         this.edgeCall = !this.edgeCall;
     }
     this.displayElement();
@@ -196,7 +196,7 @@ function addChange() {
 
 // called when V button is clicked
 function addInvalid() {
-    if (this.elmType == "spin") {
+    if (this.elmType == "spin" && (this.type == 'CoSp' || this.fly || this.change)) {
         this.invalid = !this.invalid;
     }
     this.displayElement();
