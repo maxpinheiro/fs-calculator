@@ -129,7 +129,6 @@ function displayElement() {
 
 // called when clear element button is clicked
 function clearElement() {
-    this.elmType = "";
     this.type = "";
     this.lod = 0;
     this.goe = 0;
@@ -181,6 +180,10 @@ function addEdgeCall() {
 // called when F button is clicked
 function addFly() {
     if (this.elmType == "spin") {
+        // if turning off fly, also turn off invalid
+        if (this.fly) {
+            this.invalid = false;
+        }
         this.fly = !this.fly;
     }
     this.displayElement();
@@ -189,6 +192,10 @@ function addFly() {
 // called when C button is clicked
 function addChange() {
     if (this.elmType == "spin") {
+        // if turning off change, also turn off invalid
+        if (this.change) {
+            this.invalid = false;
+        }
         this.change = !this.change;
     }
     this.displayElement();
@@ -196,7 +203,8 @@ function addChange() {
 
 // called when V button is clicked
 function addInvalid() {
-    if (this.elmType == "spin" && (this.type == 'CoSp' || this.fly || this.change)) {
+    // only flying spins and change of foot spins can have invalid elements
+    if (this.elmType == "spin" && (this.fly || this.change)) {
         this.invalid = !this.invalid;
     }
     this.displayElement();
