@@ -1,16 +1,20 @@
 var currentElement = "";
 var totalScore = 0;
 
+// basic element variables (universal)
 var elmType = "jump";
 var type = "";
 var lod = 0;
 var goe = 0;
-// info variables
+// jump info
 var under = false;
 var downgrade = false;
 var edgeCall = false;
+// spin info
 var fly = false;
 var change = false;
+var invalid = false;
+var bonus = false;
 
 
 // called when a navigation tab is clicked: hides all tabs, displays the tab with the id tabName
@@ -81,16 +85,40 @@ function displayElement() {
         document.getElementById("selected-element").innerText = "Element";
         document.getElementById("selected-goe").innerText = "GOE";
     } else {
+        this.currentElement = "";
         var lodText = "";
         if (this.lod != "0") {
             lodText = this.lod;
         }
         if (this.elmType == "jump") {
-            this.currentElement = lodText + this.type;
+            this.currentElement += lodText + this.type;
+            // underrotated and downgraded (mutually exclusive)
+            if (this.under) {
+                this.currentElement += "<";
+            } else if (this.downgrade) {
+                this.currentElement += "<<";
+            }
+            // edge call
+            if (this.edgeCall) {
+                this.currentElement += "e";
+            }
+            
         } else if (this.elmType == "spin") {
-            this.currentElement = this.type + lodText;
+            // flying spin
+            if (this.fly) {
+                this.currentElement += "F";
+            }
+            // change of foot
+            if (this.change) {
+                this.currentElement += "C";
+            }
+            this.currentElement += this.type + lodText;
+            // invalid element
+            if (this.invalid) {
+                this.currentElement += "V";
+            }
         } else if (this.elmType == "sequence") {
-            this.currentElement = this.type + lodText;
+            this.currentElement += this.type + lodText;
         }
     
         document.getElementById("selected-element").innerText = this.currentElement;
@@ -122,4 +150,52 @@ function calculateScore() {
 
 function addToTable() {
 
+}
+
+// called when < button is clicked
+function addUnder() {
+    if (this.elmType == "jump") {
+        this.under = !this.under;
+        this.downgrade = false;
+    }
+    this.displayElement();
+}
+
+// called when << button is clicked
+function addDowngrade() {
+    if (this.elmType == "jump") {
+        this.downgrade = !this.downgrade;
+        this.under = false;
+    }
+    this.displayElement();
+}
+
+// called when e button is clicked
+function addEdgeCall() {
+    if (this.elmType == "jump") {
+        this.edgeCall = !this.edgeCall;
+    }
+    this.displayElement();
+}
+
+// called when F button is clicked
+function addFly() {
+    if (this.elmType == "spin") {
+        this.fly = !this.fly;
+    }
+    this.displayElement();
+}
+
+// called when C button is clicked
+function addChange() {
+    if (this.elmType == "spin") {
+        this.change = !this.change;
+    }
+    this.displayElement();
+}
+
+// called when x button is clicked
+function addBonus() {
+    this.bonus = !this.bonus;
+    this.displayElement();
 }
