@@ -4,8 +4,8 @@ var totalScore = 0;
 // basic element variables (universal)
 var elmType = "jump";
 var type = "";
-var lod = 0;
-var goe = 0;
+var lod = '0';
+var goe = '0';
 // jump info
 var under = false;
 var downgrade = false;
@@ -81,54 +81,52 @@ function setLOD(lod) {
 }
 
 function displayElement() {
-    if (this.elmType == "") {
-        document.getElementById("selected-element").innerText = "Element";
-        document.getElementById("selected-goe").innerText = "GOE";
-    } else {
-        this.currentElement = "";
-        var lodText = "";
-        if (this.lod != "0") {
-            lodText = this.lod;
-        }
-        if (this.elmType == "jump") {
-            this.currentElement += lodText + this.type;
-            // underrotated and downgraded (mutually exclusive)
-            if (this.under) {
-                this.currentElement += "<";
-            } else if (this.downgrade) {
-                this.currentElement += "<<";
-            }
-            // edge call
-            if (this.edgeCall) {
-                this.currentElement += "e";
-            }
-            
-        } else if (this.elmType == "spin") {
-            // flying spin
-            if (this.fly) {
-                this.currentElement += "F";
-            }
-            // change of foot
-            if (this.change) {
-                this.currentElement += "C";
-            }
-            this.currentElement += this.type + lodText;
-            // invalid element
-            if (this.invalid) {
-                this.currentElement += "V";
-            }
-        } else if (this.elmType == "sequence") {
-            this.currentElement += this.type + lodText;
-        }
-    
-        document.getElementById("selected-element").innerText = this.currentElement;
-        document.getElementById("selected-goe").innerText = this.goe;
+    this.currentElement = "";
+    var lodText = "";
+    if (this.lod != "0") {
+        lodText = this.lod;
     }
+
+    if (this.elmType == "jump") {
+        this.currentElement += lodText + this.type;
+        // underrotated and downgraded (mutually exclusive)
+        if (this.under) {
+            this.currentElement += "<";
+        } else if (this.downgrade) {
+            this.currentElement += "<<";
+        }
+        // edge call
+        if (this.edgeCall) {
+            this.currentElement += "e";
+        }
+
+    } else if (this.elmType == "spin") {
+        // flying spin
+        if (this.fly) {
+            this.currentElement += "F";
+        }
+        // change of foot
+        if (this.change) {
+            this.currentElement += "C";
+        }
+        this.currentElement += this.type + lodText;
+        // invalid element
+        if (this.invalid) {
+            this.currentElement += "V";
+        }
+    } else if (this.elmType == "sequence") {
+        this.currentElement += this.type + lodText;
+    }
+
+    document.getElementById("selected-element").innerText = this.currentElement;
+    document.getElementById("selected-goe").innerText = this.goe;
+
 
 }
 
 // called when clear element button is clicked
 function clearElement() {
+    // reset variables
     this.currentElement = "";
     this.type = "";
     this.lod = 0;
@@ -141,17 +139,53 @@ function clearElement() {
     this.invalid = false;
     this.bonus = false;
 
-    this.displayElement();
+    // reset display
+    document.getElementById("selected-element").innerText = "Element";
+    document.getElementById("selected-goe").innerText = "GOE";
 }
 
 // called when add element button is clicked
 function addElement() {
-
+    var score = this.calculateScore();
+    totalScore += score;
 }
 
 // returns the score of the current element
 function calculateScore() {
+    var info = '';
+    var baseValue;
+    if (this.elmType == "jump") { // jumps: LOD, Underrotated, Downgraded, EdgeCall
+        info += this.lod;
+        if (this.under) {
+            info += '<';
+        } else if (this.downgrade) {
+            info += '<<';
+        }
+        if (this.edgeCall) {
+            info += 'e';
+        }
+    } else if (this.elmType == "spin") { // spins: Fly, Change, LOD, Invalid
+        if (this.fly) {
+            info += 'F';
+        }
+        if (this.change) {
+            info += 'C';
+        }
+        info += this.lod;
+        if (this.invalid) {
+            info += 'V';
+        }
+    } else if (this.elmType == "sequence") { // sequence: just LOD
+        info += this.lod;
+    }
 
+    if (this.lod == '0') {
+        baseValue = 0.0;
+    } else {
+        baseValue = basevalues[this.type][info];
+    }
+
+    
 }
 
 function addToTable() {
