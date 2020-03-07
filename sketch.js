@@ -1,6 +1,7 @@
 var currentElement = "";
 var totalScore = 0;
 var baseValue = 0.0;
+var elementScore = 0.0;
 var numElmInTable = 0;
 
 // basic element variables (universal)
@@ -148,9 +149,11 @@ function clearElement() {
 
 // called when add element button is clicked
 function addElement() {
-    var score = this.calculateScore();
-    totalScore += score;
+    this.calculateScore();
+    this.totalScore += this.elementScore;
     this.addToTable();
+    document.getElementById("tes-score").innerText = (this.totalScore * 100) / 100;
+    this.clearElement();
 }
 
 // returns the score of the current element
@@ -182,9 +185,9 @@ function calculateScore() {
     }
 
     if (this.lod == '0') {
-        baseValue = 0.0;
+        this.baseValue = 0.0;
     } else {
-        baseValue = basevalues[this.type][info];
+        this.baseValue = basevalues[this.type][info];
     }
 
     var scale = 0;
@@ -223,11 +226,21 @@ function calculateScore() {
             scale = 0.0;
     }
     
-    return baseValue + (baseValue * scale);
+    this.elementScore = baseValue + (baseValue * scale);
 }
 
 function addToTable() {
-
+    this.numElmInTable ++;
+    var row = "<tr>";
+    row += "<td>" + this.numElmInTable + "</td>";
+    row += "<td>" + this.currentElement + "</td>";
+    row += "<td>" + this.baseValue + "</td>";
+    row += "<td>" + this.goe + "</td>";
+    row += "<td>" + (this.elementScore - this.baseValue).toFixed(2) + "</td>";
+    row += "<td>" + this.elementScore + "</td>";
+    row += "</tr>";
+    
+    document.getElementById("elm-table").insertRow(this.numElmInTable - 1).innerHTML = row;
 }
 
 // called when < button is clicked
