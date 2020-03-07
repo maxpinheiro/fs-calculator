@@ -1,5 +1,7 @@
 var currentElement = "";
 var totalScore = 0;
+var baseValue = 0.0;
+var numElmInTable = 0;
 
 // basic element variables (universal)
 var elmType = "jump";
@@ -148,12 +150,12 @@ function clearElement() {
 function addElement() {
     var score = this.calculateScore();
     totalScore += score;
+    this.addToTable();
 }
 
 // returns the score of the current element
 function calculateScore() {
     var info = '';
-    var baseValue;
     if (this.elmType == "jump") { // jumps: LOD, Underrotated, Downgraded, EdgeCall
         info += this.lod;
         if (this.under) {
@@ -185,7 +187,43 @@ function calculateScore() {
         baseValue = basevalues[this.type][info];
     }
 
+    var scale = 0;
+    switch (this.goe) {
+        case '-5':
+            scale = -0.5;
+            break;
+        case '-4':
+            scale = -0.4;
+            break;
+        case '-3':
+            scale = -0.3;
+            break;
+        case '-2':
+            scale = -0.2;
+            break;
+        case '-1':
+            scale = -0.1;
+            break;
+        case '1':
+            scale = 0.1;
+            break;
+        case '2':
+            scale = 0.2;
+            break;
+        case '3':
+            scale = 0.3;
+            break;
+        case '4':
+            scale = 0.4;
+            break;
+        case '5':
+            scale = 0.5;
+            break;
+        default:
+            scale = 0.0;
+    }
     
+    return baseValue + (baseValue * scale);
 }
 
 function addToTable() {
