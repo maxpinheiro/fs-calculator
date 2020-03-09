@@ -8,156 +8,170 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
-<body>
+<body class="jumps-tab" id="body">
 
     <h1> TES Calculator </h1>
 
-    <!-- Selected Element and GOE -->
-    <div id="element-display">
-        <span id="selected-element">Element</span> <span id="selected-goe">GOE</span>
+    <div class="calc-half">
+        <!-- Selected Element and GOE -->
+        <div class="element-display">
+            <span id="selected-element">Element</span> <span id="selected-goe">GOE</span>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button type="button" class="jump-nav-button-active" id="nav-jumps" onclick="setPage('jumps')">Jumps</button>
+            <button type="button" class="spin-nav-button-dormant" id="nav-spins" onclick="setPage('spins')">Spins</button>
+            <button type="button" class="sequence-nav-button-dormant" id="nav-sequences"
+                onclick="setPage('sequences')">Sequences</button>
+        </div>
+
+        <!-- Jump Buttons -->
+        <div class="tab-content" id="jumps" style="display:block">
+            <h4> Add Jump </h4>
+
+            <h4> Type </h4>
+
+            <div class="jump-type">
+                <button type="button" class="std-button left-end" onclick="setJump('A')">A</button>
+                <button type="button" class="std-button" onclick="setJump('S')">S</button>
+                <button type="button" class="std-button" onclick="setJump('T')">T</button>
+                <button type="button" class="std-button" onclick="setJump('Lo')">Lo</button>
+                <button type="button" class="std-button" onclick="setJump('F')">F</button>
+                <button type="button" class="std-button right-end" onclick="setJump('Lz')">Lz</button>
+            </div>
+
+            <h4> Rotations </h4>
+
+            <div class="jump-rotations">
+                <button type="button" class="std-button left-end" onclick="setLOD('1')">1</button>
+                <button type="button" class="std-button" onclick="setLOD('2')">2</button>
+                <button type="button" class="std-button" onclick="setLOD('3')">3</button>
+                <button type="button" class="std-button right-end" onclick="setLOD('4')">4</button>
+            </div>
+
+            <h4> Info </h4>
+
+            <div class="jump-info">
+                <button type="button" class="std-button left-end" onclick="addCombo()">+</button>
+                <button type="button" class="std-button" onclick="addUnder()">&lt;</button>
+                <button type="button" class="std-button" onclick="addDowngrade()">&lt;&lt;</button>
+                <button type="button" class="std-button" onclick="addEdgeCall()">e</button>
+                <button type="button" class="std-button right-end">*</button>
+            </div>
+
+        </div>
+        <!-- Spin Buttons -->
+        <div class="tab-content" id="spins" style="display:none">
+            <h4> Add Spin </h4>
+
+            <h4> Type </h4>
+
+            <div class="spin-type">
+                <button type="button" class="std-button left-end" onclick="setSpin('USp')">USp</button>
+                <button type="button" class="std-button" onclick="setSpin('LSp')">LSp</button>
+                <button type="button" class="std-button" onclick="setSpin('CSp')">CSp</button>
+                <button type="button" class="std-button" onclick="setSpin('SSp')">SSp</button>
+                <button type="button" class="std-button right-end" onclick="setSpin('CoSp')">CoSp</button>
+            </div>
+
+            <h4> Level </h4>
+
+            <div class="spin-level">
+                <button type="button" class="std-button left-end" onclick="setLOD('B')">B</button>
+                <button type="button" class="std-button" onclick="setLOD('1')">1</button>
+                <button type="button" class="std-button" onclick="setLOD('2')">2</button>
+                <button type="button" class="std-button" onclick="setLOD('3')">3</button>
+                <button type="button" class="std-button right-end" onclick="setLOD('4')">4</button>
+            </div>
+
+            <h4> Info </h4>
+
+            <div class="spin-info">
+                <button type="button" class="std-button left-end" onclick="addFly()">F</button>
+                <button type="button" class="std-button" onclick="addChange()">C</button>
+                <button type="button" class="std-button" onclick="addInvalid()">V</button>
+                <button type="button" class="std-button right-end">*</button>
+            </div>
+
+        </div>
+        <!-- Sequence Buttons -->
+        <div class="tab-content" id="sequences" style="display:none">
+            <h4> Add Step Sequence </h4>
+
+            <h4> Type </h4>
+
+            <div class="sequence-type">
+                <button type="button" class="std-button both-end" onclick="setSequence('StSq')">StSq</button>
+            </div>
+
+            <h4> Level </h4>
+
+            <div class="sequence-level">
+                <button type="button" class="std-button left-end" onclick="setLOD('B')">B</button>
+                <button type="button" class="std-button" onclick="setLOD('1')">1</button>
+                <button type="button" class="std-button" onclick="setLOD('2')">2</button>
+                <button type="button" class="std-button" onclick="setLOD('3')">3</button>
+                <button type="button" class="std-button right-end" onclick="setLOD('4')">4</button>
+            </div>
+
+        </div>
+
+        <!-- GOE -->
+
+        <h4> GOE </h4>
+
+        <div class="goe">
+            <span>
+                <button type="button" class="neg-goe-button left-end" onclick="setGOE(-5)">-5</button>
+                <button type="button" class="neg-goe-button" onclick="setGOE(-4)">-4</button>
+                <button type="button" class="neg-goe-button" onclick="setGOE(-3)">-3</button>
+                <button type="button" class="neg-goe-button" onclick="setGOE(-2)">-2</button>
+                <button type="button" class="neg-goe-button right-end" onclick="setGOE(-1)">-1</button>
+            </span>
+            <span>
+                <button type="button" class="zero-goe-button both-end" onclick="setGOE(0)">0</button>
+            </span>
+            <span>
+                <button type="button" class="pos-goe-button left-end" onclick="setGOE(1)">+1</button>
+                <button type="button" class="pos-goe-button" onclick="setGOE(2)">+2</button>
+                <button type="button" class="pos-goe-button" onclick="setGOE(3)">+3</button>
+                <button type="button" class="pos-goe-button" onclick="setGOE(4)">+4</button>
+                <button type="button" class="pos-goe-button right-end" onclick="setGOE(5)">+5</button>
+            </span>
+        </div>
+
+        <!-- Add/Remove Element -->
+        <div>
+            <button type="button" class="clear-entry both-end" id="clear" onclick="clearElement()">Clear Entry</button>
+            <button type="button" class="add-entry both-end" id="add" disabled onclick="addElement()">Add Element</button>
+        </div>
+
+        <p class="credits"><small>Figure Skating Technical Element Score Calculator. <a href="https://github.com/maxpinheiro/tes-calculator">GitHub</a>.</small></p>
     </div>
+    <div class="results-half">
+        <!-- Scores -->
 
-    <!-- Navigation Tabs -->
-    <div class="nav-tabs">
-        <button type="button" class="tab" onclick="setPage('jumps')">Jumps</button>
-        <button type="button" class="tab" onclick="setPage('spins')">Spins</button>
-        <button type="button" class="tab" onclick="setPage('sequences')">Sequences</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Element</th>
+                    <th>Base Value</th>
+                    <th>GOE</th>
+                    <th>GOE Value</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody id="elm-table">
+
+            </tbody>
+        </table>
+
+        <p class="total-score"><span>Technical Element Score:</span> <span id="tes-score">0.00</span></p>
+
+        <button class="reset-button both-end" onclick="resetTable()">Reset Score</button>
     </div>
-
-    <!-- Jump Buttons -->
-    <div class="tab-content" id="jumps" style="display:block">
-        <h4> Add Jump </h4>
-
-        <h6> Type </h6>
-
-        <div class="jump-type">
-            <button type="button" class="std-button" onclick="setJump('A')">A</button>
-            <button type="button" class="std-button" onclick="setJump('S')">S</button>
-            <button type="button" class="std-button" onclick="setJump('T')">T</button>
-            <button type="button" class="std-button" onclick="setJump('Lo')">Lo</button>
-            <button type="button" class="std-button" onclick="setJump('F')">F</button>
-            <button type="button" class="std-button" onclick="setJump('Lz')">Lz</button>
-        </div>
-
-        <h6> Rotations </h6>
-
-        <div class="jump-rotations">
-            <button type="button" class="std-button" onclick="setLOD('1')">1</button>
-            <button type="button" class="std-button" onclick="setLOD('2')">2</button>
-            <button type="button" class="std-button" onclick="setLOD('3')">3</button>
-            <button type="button" class="std-button" onclick="setLOD('4')">4</button>
-        </div>
-
-        <h6> Info </h6>
-
-        <div class="jump-info">
-            <button type="button" class="std-button" onclick="addCombo()">+</button>
-            <button type="button" class="std-button" onclick="addUnder()">&lt;</button>
-            <button type="button" class="std-button" onclick="addDowngrade()">&lt;&lt;</button>
-            <button type="button" class="std-button" onclick="addEdgeCall()">e</button>
-            <button type="button" class="std-button">*</button>
-        </div>
-
-    </div>
-    <!-- Spin Buttons -->
-    <div class="tab-content" id="spins" style="display:none">
-        <h4> Add Spin </h4>
-
-        <h6> Type </h6>
-
-        <div class="spin-type">
-            <button type="button" class="std-button" onclick="setSpin('USp')">USp</button>
-            <button type="button" class="std-button" onclick="setSpin('LSp')">LSp</button>
-            <button type="button" class="std-button" onclick="setSpin('CSp')">CSp</button>
-            <button type="button" class="std-button" onclick="setSpin('SSp')">SSp</button>
-            <button type="button" class="std-button" onclick="setSpin('CoSp')">CoSp</button>
-        </div>
-
-        <h6> Level </h6>
-
-        <div class="spin-level">
-            <button type="button" class="std-button" onclick="setLOD('B')">B</button>
-            <button type="button" class="std-button" onclick="setLOD('1')">1</button>
-            <button type="button" class="std-button" onclick="setLOD('2')">2</button>
-            <button type="button" class="std-button" onclick="setLOD('3')">3</button>
-            <button type="button" class="std-button" onclick="setLOD('4')">4</button>
-        </div>
-
-        <h6> Info </h6>
-
-        <div class="spin-info">
-            <button type="button" class="std-button" onclick="addFly()">F</button>
-            <button type="button" class="std-button" onclick="addChange()">C</button>
-            <button type="button" class="std-button" onclick="addInvalid()">V</button>
-            <button type="button" class="std-button">*</button>
-        </div>
-
-    </div>
-    <!-- Sequence Buttons -->
-    <div class="tab-content" id="sequences" style="display:none">
-        <h4> Add Step Sequence </h4>
-
-        <h6> Type </h6>
-
-        <div class="sequence-type">
-            <button type="button" class="std-button" onclick="setSequence('StSq')">StSq</button>
-        </div>
-
-        <h6> Level </h6>
-
-        <div class="sequence-level">
-            <button type="button" class="std-button" onclick="setLOD('B')">B</button>
-            <button type="button" class="std-button" onclick="setLOD('1')">1</button>
-            <button type="button" class="std-button" onclick="setLOD('2')">2</button>
-            <button type="button" class="std-button" onclick="setLOD('3')">3</button>
-            <button type="button" class="std-button" onclick="setLOD('4')">4</button>
-        </div>
-
-    </div>
-
-    <!-- GOE -->
-
-    <h6> GOE </h6>
-
-    <div class="sequence-goe">
-        <button type="button" class="std-button" onclick="setGOE(-5)">-5</button>
-        <button type="button" class="std-button" onclick="setGOE(-4)">-4</button>
-        <button type="button" class="std-button" onclick="setGOE(-3)">-3</button>
-        <button type="button" class="std-button" onclick="setGOE(-2)">-2</button>
-        <button type="button" class="std-button" onclick="setGOE(-1)">-1</button>
-        <button type="button" class="std-button" onclick="setGOE(0)">0</button>
-        <button type="button" class="std-button" onclick="setGOE(1)">+1</button>
-        <button type="button" class="std-button" onclick="setGOE(2)">+2</button>
-        <button type="button" class="std-button" onclick="setGOE(3)">+3</button>
-        <button type="button" class="std-button" onclick="setGOE(4)">+4</button>
-        <button type="button" class="std-button" onclick="setGOE(5)">+5</button>
-    </div>
-
-    <!-- Add/Remove Element -->
-    <div>
-        <button type="button" class="std-button" onclick="clearElement()">Clear Entry</button>
-        <button type="button" class="std-button" onclick="addElement()">Add Element</button>
-    </div>
-
-    <!-- Scores -->
-
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Element</th>
-                <th>Base Value</th>
-                <th>GOE</th>
-                <th>GOE Value</th>
-                <th>Score</th>
-            </tr>
-        </thead>
-        <tbody id="elm-table">
-
-        </tbody>
-    </table>
-
-    <p><span>Technical Element Score:</span> <span id="tes-score">0.00</span></p>
 
 </body>
 

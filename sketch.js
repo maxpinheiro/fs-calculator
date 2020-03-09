@@ -28,21 +28,41 @@ function Element() {
 function setPage(tabName) {
     // only swap pages if currently not selecting anything
     if (this.currentElement == "") {
+        // hide/display each tab content
         var i;
         var x = document.getElementsByClassName("tab-content");
         for (i = 0; i < x.length; i++) {
             x[i].style.display = "none";
         }
         document.getElementById(tabName).style.display = "block";
+
+        // activate/deactive navigation buttons
+        //document.getElementById("nav-jumps").className = "jump-nav-button-dormant";
+        //document.getElementById("nav-spins").className = "spin-nav-button-dormant";
+        //document.getElementById("nav-sequences").className = "sequence-nav-button-dormant";
+
+        //document.getElementById("nav-" + tabName).className += "-active";
+        if (tabName == 'jumps') {
+            elements[0].elmType = "jump";
+            document.getElementById("nav-jumps").className = "jump-nav-button-active";
+            document.getElementById("nav-spins").className = "spin-nav-button-dormant";
+            document.getElementById("nav-sequences").className = "sequence-nav-button-dormant";
+        } else if (tabName == 'spins') {
+            elements[0].elmType = "spin";
+            document.getElementById("nav-jumps").className = "jump-nav-button-dormant";
+            document.getElementById("nav-spins").className = "spin-nav-button-active";
+            document.getElementById("nav-sequences").className = "sequence-nav-button-dormant";
+        } else if (tabName == 'sequences') {
+            elements[0].elmType = "sequence";
+            document.getElementById("nav-jumps").className = "jump-nav-button-dormant";
+            document.getElementById("nav-spins").className = "spin-nav-button-dormant";
+            document.getElementById("nav-sequences").className = "sequence-nav-button-active";
+        }
     }
 
-    if (tabName == 'jumps') {
-        elements[0].elmType = "jump";
-    } else if (tabName == 'spins') {
-        elements[0].elmType = "spin";
-    } else if (tabName == 'sequences') {
-        elements[0].elmType = "sequence";
-    }
+    document.getElementById("body").className = tabName + "-tab";
+
+    
 }
 
 // called when GOE button is clicked: sets the current GOE
@@ -62,9 +82,12 @@ function setJump(type) {
     if (elements[0].elmType == "jump") {
         elements[index].type = type;
         elements[index].edgeCall = false;
-        elements[index].lod = '1';
+        if (elements[index].lod == '0') {
+            elements[index].lod = '1';
+        }
     }
     this.displayElement();
+    this.enableButtons();
 }
 
 // called when spin type button is clicked
@@ -72,18 +95,24 @@ function setSpin(type) {
     if (elements[0].elmType == "spin") {
         elements[index].type = type;
         elements[index].invalid = false;
-        elements[index].lod = 'B';
+        if (elements[index].lod == '0') {
+            elements[index].lod = 'B';
+        }
     }
     this.displayElement();
+    this.enableButtons();
 }
 
 // called when sequence type button is clicked
 function setSequence(type) {
     if (elements[0].elmType == "sequence") {
         elements[index].type = type;
-        elements[index].lod = 'B';
+        if (elements[index].lod == '0') {
+            elements[index].lod = 'B';
+        }
     }
     this.displayElement();
+    this.enableButtons();
 }
 
 // called when jump rotation or spin/sequence level button is clicked
@@ -94,61 +123,73 @@ function setLOD(lod) {
 
 function displayElement() {
     this.currentElement = "";
-    for (var i = 0; i < elements.length; i++) {
-        var lodText = "";
-        if (elements[i].lod != "0") {
-            lodText = elements[i].lod;
-        }
-
-        if (elements[i].elmType == "jump") {
-            this.currentElement += lodText + elements[i].type;
-            // underrotated and downgraded (mutually exclusive)
-            if (elements[i].under) {
-                this.currentElement += "<";
-            } else if (elements[i].downgrade) {
-                this.currentElement += "<<";
+    var currentGOE = "";
+    if (elements[0].type == "") {
+        this.currentElement = "Element";
+        currentGOE = "GOE";
+    } else {
+        currentGOE = elements[0].goe;
+        for (var i = 0; i < elements.length; i++) {
+            var lodText = "";
+            if (elements[i].lod != "0") {
+                lodText = elements[i].lod;
             }
-            // edge call
-            if (elements[i].edgeCall) {
-                this.currentElement += "e";
+    
+            if (elements[i].elmType == "jump") {
+                this.currentElement += lodText + elements[i].type;
+                // underrotated and downgraded (mutually exclusive)
+                if (elements[i].under) {
+                    this.currentElement += "<";
+                } else if (elements[i].downgrade) {
+                    this.currentElement += "<<";
+                }
+                // edge call
+                if (elements[i].edgeCall) {
+                    this.currentElement += "e";
+                }
+    
+            } else if (elements[i].elmType == "spin") {
+                // flying spin
+                if (elements[i].fly) {
+                    this.currentElement += "F";
+                }
+                // change of foot
+                if (elements[i].change) {
+                    this.currentElement += "C";
+                }
+                this.currentElement += elements[i].type + lodText;
+                // invalid element
+                if (elements[i].invalid) {
+                    this.currentElement += "V";
+                }
+            } else if (elements[i].elmType == "sequence") {
+                this.currentElement += elements[i].type + lodText;
             }
-
-        } else if (elements[i].elmType == "spin") {
-            // flying spin
-            if (elements[i].fly) {
-                this.currentElement += "F";
+            // if there are more elements: add +
+            if (i < elements.length - 1) {
+                this.currentElement += "+";
             }
-            // change of foot
-            if (elements[i].change) {
-                this.currentElement += "C";
-            }
-            this.currentElement += elements[i].type + lodText;
-            // invalid element
-            if (elements[i].invalid) {
-                this.currentElement += "V";
-            }
-        } else if (elements[i].elmType == "sequence") {
-            this.currentElement += elements[i].type + lodText;
-        }
-        // if there are more elements: add +
-        if (i < elements.length - 1) {
-            this.currentElement += "+";
         }
     }
-
+    
     document.getElementById("selected-element").innerText = this.currentElement;
-    document.getElementById("selected-goe").innerText = elements[0].goe;
+    document.getElementById("selected-goe").innerText = currentGOE;
+    document.getElementById("tes-score").innerText = Math.round(this.totalScore * 100) / 100;
 }
 
 // called when clear element button is clicked
 function clearElement() {
     // reset variables
-    elements = [new Element()];
-    index = 0;
+    var elementType = elements[0].elmType;
+    this.elements = [new Element()];
+    elements[0].elmType = elementType;
+    this.index = 0;
+    this.currentElement = ""
 
     // reset display
     document.getElementById("selected-element").innerText = "Element";
     document.getElementById("selected-goe").innerText = "GOE";
+    this.enableButtons();
 }
 
 // called when add element button is clicked
@@ -156,8 +197,8 @@ function addElement() {
     this.calculateScore();
     this.totalScore += this.elementScore;
     this.addToTable();
-    document.getElementById("tes-score").innerText = (this.totalScore * 100) / 100;
     this.clearElement();
+    this.displayElement();
 }
 
 // returns the score of the current element
@@ -231,7 +272,6 @@ function calculateScore() {
         default:
             scale = 0.0;
     }
-    console.log(elements[0].goe);
     this.elementScore = this.baseValue + (this.baseValue * scale);
 }
 
@@ -242,8 +282,8 @@ function addToTable() {
     row += "<td>" + this.currentElement + "</td>";
     row += "<td>" + this.baseValue + "</td>";
     row += "<td>" + elements[0].goe + "</td>";
-    row += "<td>" + (this.elementScore - this.baseValue).toFixed(2) + "</td>";
-    row += "<td>" + this.elementScore + "</td>";
+    row += "<td>" + Math.round((this.elementScore - this.baseValue) * 100) / 100 + "</td>";
+    row += "<td>" + Math.round(this.elementScore * 100) / 100 + "</td>";
     row += "</tr>";
 
     document.getElementById("elm-table").insertRow(this.numElmInTable - 1).innerHTML = row;
@@ -254,6 +294,7 @@ function addCombo() {
     elements.push(new Element());
     index++;
     this.displayElement();
+    this.enableButtons();
 }
 
 // called when < button is clicked
@@ -318,5 +359,35 @@ function addInvalid() {
 // called when x button is clicked
 function addBonus() {
     elements[index].bonus = !elements[index].bonus;
+    this.displayElement();
+}
+
+function enableButtons() {
+    // disable nav tables
+    var nav_name = "nav-" + elements[0].elmType + "s";
+    if (this.currentElement == "") {
+        document.getElementById("nav-jumps").disabled = false;
+        document.getElementById("nav-spins").disabled = false;
+        document.getElementById("nav-sequences").disabled = false;
+    } else {
+        document.getElementById("nav-jumps").disabled = true;
+        document.getElementById("nav-spins").disabled = true;
+        document.getElementById("nav-sequences").disabled = true;
+        document.getElementById(nav_name).disabled = false;
+    }
+
+    // clear element button
+    if (this.currentElement != "" && this.currentElement.substring(this.currentElement.length - 1) != '+') {
+        document.getElementById("add").disabled = false;
+    } else {
+        document.getElementById("add").disabled = true;
+    }
+}
+
+function resetTable() {
+    document.getElementById("elm-table").innerHTML = "";
+    this.numElmInTable = 0;
+    this.totalScore = 0.0;
+    this.clearElement();
     this.displayElement();
 }
