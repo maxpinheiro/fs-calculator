@@ -13,6 +13,7 @@ function Element() {
     this.type = "";
     this.lod = '0';
     this.goe = '0';
+    this.nullified = false;
     // jump info
     this.under = false;
     this.downgrade = false;
@@ -82,6 +83,7 @@ function setJump(type) {
     if (elements[0].elmType == "jump") {
         elements[index].type = type;
         elements[index].edgeCall = false;
+        elements[index].nullified = false;
         if (elements[index].lod == '0') {
             elements[index].lod = '1';
         }
@@ -95,6 +97,7 @@ function setSpin(type) {
     if (elements[0].elmType == "spin") {
         elements[index].type = type;
         elements[index].invalid = false;
+        elements[index].nullified = false;
         if (elements[index].lod == '0') {
             elements[index].lod = 'B';
         }
@@ -107,6 +110,7 @@ function setSpin(type) {
 function setSequence(type) {
     if (elements[0].elmType == "sequence") {
         elements[index].type = type;
+        elements[index].nullified = false;
         if (elements[index].lod == '0') {
             elements[index].lod = 'B';
         }
@@ -164,6 +168,9 @@ function displayElement() {
                 }
             } else if (elements[i].elmType == "sequence") {
                 this.currentElement += elements[i].type + lodText;
+            }
+            if (elements[i].nullified) {
+                this.currentElement += "*";
             }
             // if there are more elements: add +
             if (i < elements.length - 1) {
@@ -233,7 +240,7 @@ function calculateScore() {
             info += elements[i].lod;
         }
 
-        if (elements[i].lod == '0') {
+        if (elements[i].lod == '0' || elements[i].nullified) {
             elements[i].baseValue = 0.0;
         } else {
             this.baseValue += basevalues[elements[i].type][info];
@@ -274,6 +281,7 @@ function calculateScore() {
         default:
             scale = 0.0;
     }
+
     this.elementScore = this.baseValue + (this.baseValue * scale);
 }
 
@@ -355,6 +363,12 @@ function addInvalid() {
     if (elements[0].elmType == "spin" && (elements[index].fly || elements[index].change)) {
         elements[index].invalid = !elements[index].invalid;
     }
+    this.displayElement();
+}
+
+// called when * button is clicked
+function nullifyElement() {
+    elements[index].nullified = !elements[index].nullified
     this.displayElement();
 }
 

@@ -57,7 +57,7 @@
                 <button type="button" class="std-button" onclick="addUnder()">&lt;</button>
                 <button type="button" class="std-button" onclick="addDowngrade()">&lt;&lt;</button>
                 <button type="button" class="std-button" onclick="addEdgeCall()">e</button>
-                <button type="button" class="std-button right-end">*</button>
+                <button type="button" class="std-button right-end" onclick="nullifyElement()">*</button>
             </div>
 
         </div>
@@ -91,7 +91,7 @@
                 <button type="button" class="std-button left-end" onclick="addFly()">F</button>
                 <button type="button" class="std-button" onclick="addChange()">C</button>
                 <button type="button" class="std-button" onclick="addInvalid()">V</button>
-                <button type="button" class="std-button right-end">*</button>
+                <button type="button" class="std-button right-end"onclick="nullifyElement()">*</button>
             </div>
 
         </div>
@@ -113,6 +113,12 @@
                 <button type="button" class="std-button" onclick="setLOD('2')">2</button>
                 <button type="button" class="std-button" onclick="setLOD('3')">3</button>
                 <button type="button" class="std-button right-end" onclick="setLOD('4')">4</button>
+            </div>
+
+            <h4> Info </h4>
+
+            <div class="sequence-info">
+                    <button type="button" class="std-button both-end"onclick="nullifyElement()">*</button>
             </div>
 
         </div>
