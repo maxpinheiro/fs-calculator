@@ -62,7 +62,7 @@ function setPage(tabName) {
 
     document.getElementById("body").className = tabName + "-tab";
 
-    
+
 }
 
 // called when GOE button is clicked: sets the current GOE
@@ -134,7 +134,7 @@ function displayElement() {
             if (elements[i].lod != "0") {
                 lodText = elements[i].lod;
             }
-    
+
             if (elements[i].elmType == "jump") {
                 this.currentElement += lodText + elements[i].type;
                 // underrotated and downgraded (mutually exclusive)
@@ -147,7 +147,7 @@ function displayElement() {
                 if (elements[i].edgeCall) {
                     this.currentElement += "e";
                 }
-    
+
             } else if (elements[i].elmType == "spin") {
                 // flying spin
                 if (elements[i].fly) {
@@ -171,7 +171,7 @@ function displayElement() {
             }
         }
     }
-    
+
     document.getElementById("selected-element").innerText = this.currentElement;
     document.getElementById("selected-goe").innerText = currentGOE;
     document.getElementById("tes-score").innerText = Math.round(this.totalScore * 100) / 100;
@@ -207,11 +207,13 @@ function calculateScore() {
     for (var i = 0; i < elements.length; i++) {
         var info = '';
         if (elements[i].elmType == "jump") { // jumps: LOD, Underrotated, Downgraded, EdgeCall
-            info += elements[i].lod;
+            var lod = elements[i].lod;
+            if (elements[i].downgrade) {
+                lod = downgradeLevel(lod, elements[i].elmType);
+            }
+            info += lod;
             if (elements[i].under) {
                 info += '<';
-            } else if (elements[i].downgrade) {
-                info += '<<';
             }
             if (elements[i].edgeCall) {
                 info += 'e';
@@ -390,4 +392,34 @@ function resetTable() {
     this.totalScore = 0.0;
     this.clearElement();
     this.displayElement();
+}
+
+function downgradeLevel(lod, type) {
+    if (type == "jump") {
+        switch (lod) {
+            case '0':
+                return '0';
+            case '1':
+                return '0';
+            case '2':
+                return '1';
+            case '3':
+                return '2';
+            case '4':
+                return '3';
+        }
+    } else {
+        switch (lod) {
+            case 'B':
+                return 'B';
+            case '1':
+                return 'B';
+            case '2':
+                return '1';
+            case '3':
+                return '2';
+            case '4':
+                return '3';
+        }
+    }
 }
