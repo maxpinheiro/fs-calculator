@@ -290,6 +290,7 @@ function addToTable() {
     var row = "<tr>";
     row += "<td>" + this.numElmInTable + "</td>";
     row += "<td>" + this.currentElement + "</td>";
+    row += "<td>" + this.getInfo() + "</td>";
     row += "<td>" + this.baseValue + "</td>";
     row += "<td>" + elements[0].goe + "</td>";
     row += "<td>" + Math.round((this.elementScore - this.baseValue) * 100) / 100 + "</td>";
@@ -297,6 +298,33 @@ function addToTable() {
     row += "</tr>";
 
     document.getElementById("elm-table").insertRow(this.numElmInTable - 1).innerHTML = row;
+}
+
+function getInfo() {
+    var info = "";
+    for (var i = 0; i < elements.length; i++) {
+        if (elements[i].elmType == "jump") {
+            if (elements[i].under) {
+                info += "<";
+            } else if (elements[i].downgrade) {
+                info += "<<";
+            }
+            // edge call
+            if (elements[i].edgeCall) {
+                info += "e";
+            }
+
+        } else if (elements[i].elmType == "spin") {
+            // invalid element
+            if (elements[i].invalid) {
+                info += "V";
+            }
+        }
+        if (elements[i].nullified) {
+            //this.currentElement += "*";
+        }
+    }
+    return info;
 }
 
 // called when + button is clicked
