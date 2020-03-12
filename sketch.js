@@ -121,8 +121,12 @@ function setSequence(type) {
 
 // called when jump rotation or spin/sequence level button is clicked
 function setLOD(lod) {
-    elements[index].lod = lod;
-    this.displayElement();
+    if (elements[index].type == 'Eu' && lod > 1) {
+
+    } else {
+        elements[index].lod = lod;
+        this.displayElement();
+    }
 }
 
 function displayElement() {
