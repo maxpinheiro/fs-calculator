@@ -241,3 +241,8 @@ h4 {
     padding-top: 5px;
     color: black;
 }
+
+#bonus-col {
+    padding: 0px;
+    margin: 0px;
+}

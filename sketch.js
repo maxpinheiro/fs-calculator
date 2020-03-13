@@ -18,6 +18,7 @@ function Element() {
     this.under = false;
     this.downgrade = false;
     this.edgeCall = false;
+    this.repeated = false;
     // spin info
     this.fly = false;
     this.change = false;
@@ -121,12 +122,8 @@ function setSequence(type) {
 
 // called when jump rotation or spin/sequence level button is clicked
 function setLOD(lod) {
-    if (elements[index].type == 'Eu' && lod > 1) {
-
-    } else {
-        elements[index].lod = lod;
-        this.displayElement();
-    }
+    elements[index].lod = lod;
+    this.displayElement();
 }
 
 function displayElement() {
@@ -155,6 +152,10 @@ function displayElement() {
                 if (elements[i].edgeCall) {
                     this.currentElement += "e";
                 }
+                // repeated element
+                if (elements[i].repeated) {
+                    this.currentElement += "+REP";
+                }
 
             } else if (elements[i].elmType == "spin") {
                 // flying spin
@@ -180,6 +181,9 @@ function displayElement() {
             if (i < elements.length - 1) {
                 this.currentElement += "+";
             }
+        }
+        if (elements[0].bonus) {
+            this.currentElement += " x";
         }
     }
 
@@ -247,9 +251,17 @@ function calculateScore() {
         if (elements[i].lod == '0' || elements[i].nullified) {
             elements[i].baseValue = 0.0;
         } else {
-            this.baseValue += basevalues[elements[i].type][info];
+            var bv = basevalues[elements[i].type][info];
+            if (elements[i].elmType == "jump" && elements[i].repeated) {
+                bv *= 0.7;
+            }
+            if (elements[i].elmType == "jump" && elements[i].bonus) {
+                bv *= 1.1;
+            }
+            this.baseValue += bv;
         }
     }
+
     var scale = 0;
     switch (elements[0].goe) {
         case -5:
@@ -296,6 +308,7 @@ function addToTable() {
     row += "<td>" + this.currentElement + "</td>";
     row += "<td>" + this.getInfo() + "</td>";
     row += "<td>" + this.baseValue + "</td>";
+    row += "<td>" + this.getBonus() + "</td>";
     row += "<td>" + elements[0].goe + "</td>";
     row += "<td>" + Math.round((this.elementScore - this.baseValue) * 100) / 100 + "</td>";
     row += "<td>" + Math.round(this.elementScore * 100) / 100 + "</td>";
@@ -406,8 +419,10 @@ function nullifyElement() {
 
 // called when x button is clicked
 function addBonus() {
-    elements[index].bonus = !elements[index].bonus;
-    this.displayElement();
+    if (elements[0].elmType == "jump") {
+        elements[0].bonus = !elements[0].bonus;
+        this.displayElement();
+    }
 }
 
 function enableButtons() {
@@ -429,6 +444,16 @@ function enableButtons() {
         document.getElementById("add").disabled = false;
     } else {
         document.getElementById("add").disabled = true;
+    }
+
+    if (elements[index].type == 'Eu') {
+        document.getElementById("rot2").disabled = true;
+        document.getElementById("rot3").disabled = true;
+        document.getElementById("rot4").disabled = true;
+    } else {
+        document.getElementById("rot2").disabled = false;
+        document.getElementById("rot3").disabled = false;
+        document.getElementById("rot4").disabled = false;
     }
 }
 
@@ -467,5 +492,20 @@ function downgradeLevel(lod, type) {
             case '4':
                 return '3';
         }
+    }
+}
+
+function addRepeated() {
+    if (elements[0].elmType == "jump") {
+        elements[index].repeated = true;
+        this.enableButtons();
+    }
+}
+
+function getBonus() {
+    if (elements[0].bonus) {
+        return "x";
+    } else {
+        return "";
     }
 }

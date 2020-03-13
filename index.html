@@ -22,8 +22,7 @@
         <div class="nav-tabs">
             <button type="button" class="jump-nav-button-active" id="nav-jumps" onclick="setPage('jumps')">Jumps</button>
             <button type="button" class="spin-nav-button-dormant" id="nav-spins" onclick="setPage('spins')">Spins</button>
-            <button type="button" class="sequence-nav-button-dormant" id="nav-sequences"
-                onclick="setPage('sequences')">Sequences</button>
+            <button type="button" class="sequence-nav-button-dormant" id="nav-sequences" onclick="setPage('sequences')">Sequences</button>
         </div>
 
         <!-- Jump Buttons -->
@@ -45,10 +44,10 @@
             <h4> Rotations </h4>
 
             <div class="jump-rotations">
-                <button type="button" class="std-button left-end" onclick="setLOD('1')">1</button>
-                <button type="button" class="std-button" onclick="setLOD('2')">2</button>
-                <button type="button" class="std-button" onclick="setLOD('3')">3</button>
-                <button type="button" class="std-button right-end" onclick="setLOD('4')">4</button>
+                <button type="button" id="rot1" class="std-button left-end" onclick="setLOD('1')">1</button>
+                <button type="button" id="rot2" class="std-button" onclick="setLOD('2')">2</button>
+                <button type="button" id="rot3" class="std-button" onclick="setLOD('3')">3</button>
+                <button type="button" id="rot4" class="std-button right-end" onclick="setLOD('4')">4</button>
             </div>
 
             <h4> Info </h4>
@@ -58,6 +57,8 @@
                 <button type="button" class="std-button" onclick="addUnder()">&lt;</button>
                 <button type="button" class="std-button" onclick="addDowngrade()">&lt;&lt;</button>
                 <button type="button" class="std-button" onclick="addEdgeCall()">e</button>
+                <button type="button" class="std-button" onclick="addRepeated()">+REP</button>
+                <button type="button" class="std-button" onclick="addBonus()">x</button>
                 <button type="button" class="std-button right-end" onclick="nullifyElement()">*</button>
             </div>
 
@@ -166,6 +167,7 @@
                     <th>Element</th>
                     <th>Info</th>
                     <th>Base Value</th>
+                    <th id="bonus-col"></th>
                     <th>GOE</th>
                     <th>GOE Value</th>
                     <th>Score</th>
