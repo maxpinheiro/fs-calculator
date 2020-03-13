@@ -455,6 +455,19 @@ function enableButtons() {
         document.getElementById("rot3").disabled = false;
         document.getElementById("rot4").disabled = false;
     }
+
+    if (elements[index].type == 'ChSq') {
+        document.getElementById("sq-lv-1").disabled = true;
+        document.getElementById("sq-lv-2").disabled = true;
+        document.getElementById("sq-lv-3").disabled = true;
+        document.getElementById("sq-lv-4").disabled = true;
+    } else {
+        document.getElementById("sq-lv-1").disabled = false;
+        document.getElementById("sq-lv-2").disabled = false;
+        document.getElementById("sq-lv-3").disabled = false;
+        document.getElementById("sq-lv-4").disabled = false;
+    }
+
 }
 
 function resetTable() {
