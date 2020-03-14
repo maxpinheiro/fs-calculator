@@ -262,3 +262,11 @@ h4 {
     padding: 0px;
     margin: 0px;
 }
+
+.slider {
+    width: 75%;
+    outline: none;
+    background-color: black;
+    height: 30px;
+    border-radius: 5px;  
+}

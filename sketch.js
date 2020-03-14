@@ -542,3 +542,7 @@ function getBonus() {
         return "";
     }
 }
+
+function updatePCS() {
+    
+}
