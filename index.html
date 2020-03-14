@@ -10,7 +10,7 @@
 
 <body class="jumps-tab" id="body">
 
-    <h1> TES Calculator </h1>
+    <h1> FS Score Calculator </h1>
 
     <div class="calc-half">
         <!-- Selected Element and GOE -->
@@ -23,6 +23,7 @@
             <button type="button" class="jump-nav-button-active" id="nav-jumps" onclick="setPage('jumps')">Jumps</button>
             <button type="button" class="spin-nav-button-dormant" id="nav-spins" onclick="setPage('spins')">Spins</button>
             <button type="button" class="sequence-nav-button-dormant" id="nav-sequences" onclick="setPage('sequences')">Sequences</button>
+            <button type="button" class="pcs-nav-button-dormant" id="nav-pcs" onclick="setPage('pcs')">PCS</button>
         </div>
 
         <!-- Jump Buttons -->
@@ -128,9 +129,10 @@
 
         <!-- GOE -->
 
-        <h4> GOE </h4>
+        <div class="goe" id="goe-tab">
 
-        <div class="goe">
+            <h4> GOE </h4>
+
             <span>
                 <button type="button" class="neg-goe-button left-end" onclick="setGOE(-5)">-5</button>
                 <button type="button" class="neg-goe-button" onclick="setGOE(-4)">-4</button>
@@ -154,6 +156,10 @@
         <div>
             <button type="button" class="clear-entry both-end" id="clear" onclick="clearElement()">Clear Entry</button>
             <button type="button" class="add-entry both-end" id="add" disabled onclick="addElement()">Add Element</button>
+        </div>
+
+        <div class="tab-content" id="pcs" style="display:none">
+            <h4> Set Program Component Score </h4>
         </div>
 
         <p class="credits"><small>Figure Skating Technical Element Score Calculator. <a href="https://github.com/maxpinheiro/tes-calculator">GitHub</a>.</small></p>
@@ -180,6 +186,8 @@
         </table>
 
         <p class="total-score"><span>Technical Element Score:</span> <span id="tes-score">0.00</span></p>
+        <p class="total-score"><span>Program Component Score:</span> <span id="pcs-score">0.00</span></p>
+        <p class="total-score"><span>Total Program Score:</span> <span id="total-program-score">0.00</span></p>
 
         <button class="reset-button both-end" onclick="resetTable()">Reset Score</button>
     </div>

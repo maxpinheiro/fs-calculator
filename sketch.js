@@ -36,7 +36,7 @@ function setPage(tabName) {
         for (i = 0; i < x.length; i++) {
             x[i].style.display = "none";
         }
-        document.getElementById(tabName).style.display = "block";
+        document.getElementById(tabName).style = "display:block";
 
         // activate/deactive navigation buttons
         //document.getElementById("nav-jumps").className = "jump-nav-button-dormant";
@@ -49,16 +49,36 @@ function setPage(tabName) {
             document.getElementById("nav-jumps").className = "jump-nav-button-active";
             document.getElementById("nav-spins").className = "spin-nav-button-dormant";
             document.getElementById("nav-sequences").className = "sequence-nav-button-dormant";
+            document.getElementById("nav-pcs").className = "pcs-nav-button-dormant";
+            document.getElementById("goe-tab").style = "display:block";
+            document.getElementById("clear").style = "display:block";
+            document.getElementById("add").style = "display:block";
         } else if (tabName == 'spins') {
             elements[0].elmType = "spin";
             document.getElementById("nav-jumps").className = "jump-nav-button-dormant";
             document.getElementById("nav-spins").className = "spin-nav-button-active";
             document.getElementById("nav-sequences").className = "sequence-nav-button-dormant";
+            document.getElementById("nav-pcs").className = "pcs-nav-button-dormant";
+            document.getElementById("goe-tab").style = "display:block";
+            document.getElementById("clear").style = "display:block";
+            document.getElementById("add").style = "display:block";
         } else if (tabName == 'sequences') {
             elements[0].elmType = "sequence";
             document.getElementById("nav-jumps").className = "jump-nav-button-dormant";
             document.getElementById("nav-spins").className = "spin-nav-button-dormant";
             document.getElementById("nav-sequences").className = "sequence-nav-button-active";
+            document.getElementById("nav-pcs").className = "pcs-nav-button-dormant";
+            document.getElementById("goe-tab").style = "display:block";
+            document.getElementById("clear").style = "display:block";
+            document.getElementById("add").style = "display:block";
+        } else if (tabName == 'pcs') {
+            document.getElementById("nav-jumps").className = "jump-nav-button-dormant";
+            document.getElementById("nav-spins").className = "spin-nav-button-dormant";
+            document.getElementById("nav-sequences").className = "sequence-nav-button-dormant";
+            document.getElementById("nav-pcs").className = "pcs-nav-button-active";
+            document.getElementById("goe-tab").style = "display:none";
+            document.getElementById("clear").style = "display:none";
+            document.getElementById("add").style = "display:none";
         }
     }
 

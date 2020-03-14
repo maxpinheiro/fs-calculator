@@ -18,6 +18,11 @@
     color: rgb(94, 0, 0);
 }
 
+.pcs-tab {
+    background-color: rgb(220, 183, 255);
+    color: rgb(52, 0, 94);
+}
+
 .element-display, h1, table, .total-score {
     color: black;
 }
@@ -53,7 +58,7 @@ button {
     border-bottom-color: rgb(59, 59, 59);
 }
 
-.jump-nav-button-dormant, .spin-nav-button-dormant, .sequence-nav-button-dormant {
+.jump-nav-button-dormant, .spin-nav-button-dormant, .sequence-nav-button-dormant, .pcs-nav-button-dormant {
     background-color: inherit;
     color: grey;
     border-style: none;
@@ -89,6 +94,17 @@ button {
     border-color: rgb(94, 0, 0);
     color: rgb(94, 0, 0);
     background-color: rgb(255, 206, 206);
+    float: left;
+    margin-top: 10px;
+    border-bottom-style: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.pcs-nav-button-active {
+    border-color: rgb(52, 0, 94);
+    color: rgb(52, 0, 94);
+    background-color: rgb(220, 183, 255);
     float: left;
     margin-top: 10px;
     border-bottom-style: none;
