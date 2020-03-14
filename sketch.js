@@ -544,5 +544,9 @@ function getBonus() {
 }
 
 function updatePCS() {
-    
+    document.getElementById("pcs-ss-box").value = document.getElementById("pcs-ss-slider").value;
+    document.getElementById("pcs-trn-box").value = document.getElementById("pcs-trn-slider").value;
+    document.getElementById("pcs-prf-box").value = document.getElementById("pcs-prf-slider").value;
+    document.getElementById("pcs-cmp-box").value = document.getElementById("pcs-cmp-slider").value;
+    document.getElementById("pcs-int-box").value = document.getElementById("pcs-int-slider").value;
 }
