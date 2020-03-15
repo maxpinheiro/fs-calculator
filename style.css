@@ -1,6 +1,12 @@
+html
+{
+  -webkit-tap-highlight-color:transparent;
+}
+
 * {
     font-family: Arial, Helvetica, sans-serif;
     overflow: auto;
+    -webkit-user-select: none;
 }
 
 .jumps-tab  {
@@ -19,7 +25,7 @@
 }
 
 .pcs-tab {
-    background-color: rgb(220, 183, 255);
+    background-color: rgb(214, 169, 255);
     color: rgb(52, 0, 94);
 }
 
@@ -77,6 +83,7 @@ button {
     border-bottom-style: none;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    border-top-style: groove;
 }
 
 .spin-nav-button-active {
@@ -184,9 +191,8 @@ span {
 }
 
 .clear-entry, .add-entry {
-    /*margin-left: 10px;
-    margin-right: 10px; */
     margin-top: 10px;
+    float: left;
 }
 
 .add-entry:disabled {
@@ -269,4 +275,16 @@ h4 {
     background-color: black;
     height: 30px;
     border-radius: 5px;  
+}
+
+.box {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+    border-style: none;
+} 
+
+.add-clear {
+    margin-top: 15px;
+    border-top: solid rgb(88, 88, 88) 1px;
 }

@@ -153,7 +153,7 @@
         </div>
 
         <!-- Add/Remove Element -->
-        <div>
+        <div class="add-clear">
             <button type="button" class="clear-entry both-end" id="clear" onclick="clearElement()">Clear Entry</button>
             <button type="button" class="add-entry both-end" id="add" disabled onclick="addElement()">Add Element</button>
         </div>
@@ -162,24 +162,24 @@
             <h4> Set Program Component Score </h4>
             <p>
                 <span>Skating Skills</span>
-                <span> <input type="number" value ="0.00" class="pcs" id="pcs-ss-box" min="0" max="10" step="0.25"> </span> </p>
-            <input type="range" class="slider" value ="0.00" min="0" max="10" step="0.25" id="pcs-ss-slider" onclick="updatePCS()">
+                <span> <input type="number" value ="0.00" class="box" id="pcs-ss-box" min="0" max="10" step="0.25"> </span> </p>
+            <input type="range" class="slider" value ="0.00" min="0" max="10" step="0.25" id="pcs-ss-slider" oninput="updatePCS()">
             <p>
                 <span>Transitions</span>
-                <span> <input type="number" value ="0.00" class="pcs" id="pcs-trn-box" min="0" max="10" step="0.25"> </span> </p>
-            <input type="range" class="slider" value ="0.00" min="0" max="10" step="0.25" id="pcs-trn-slider" onclick="updatePCS()">
+                <span> <input type="number" value ="0.00" class="box" id="pcs-trn-box" min="0" max="10" step="0.25"> </span> </p>
+            <input type="range" class="slider" value ="0.00" min="0" max="10" step="0.25" id="pcs-trn-slider" oninput="updatePCS()">
             <p>
                 <span>Performance</span>
-                <span> <input type="number" value ="0.00" class="pcs" id="pcs-prf-box" min="0" max="10" step="0.25"> </span> </p>
-            <input type="range" class="slider" value ="0.00" min="0" max="10" step="0.25" id="pcs-prf-slider" onclick="updatePCS()">
+                <span> <input type="number" value ="0.00" class="box" id="pcs-prf-box" min="0" max="10" step="0.25"> </span> </p>
+            <input type="range" class="slider" value ="0.00" min="0" max="10" step="0.25" id="pcs-prf-slider" oninput="updatePCS()">
             <p>
                 <span>Composition</span>
-                <span> <input type="number" value ="0.00" class="pcs" id="pcs-cmp-box" min="0" max="10" step="0.25"> </span> </p>
-            <input type="range" class="slider" value ="0.00" min="0" max="10" step="0.25" id="pcs-cmp-slider" onclick="updatePCS()">
+                <span> <input type="number" value ="0.00" class="box" id="pcs-cmp-box" min="0" max="10" step="0.25"> </span> </p>
+            <input type="range" class="slider" value ="0.00" min="0" max="10" step="0.25" id="pcs-cmp-slider" oninput="updatePCS()">
             <p>
                 <span>Interpretation of Music</span>
-                <span> <input type="number" value ="0.00" class="pcs" id="pcs-int-box" min="0" max="10" step="0.25"> </span> </p>
-            <input type="range" class="slider" value ="0.00" min="0" max="10" step="0.25" id="pcs-int-slider" onclick="updatePCS()">
+                <span> <input type="number" value ="0.00" class="box" id="pcs-int-box" min="0" max="10" step="0.25"> </span> </p>
+            <input type="range" class="slider" value ="0.00" min="0" max="10" step="0.25" id="pcs-int-slider" oninput="updatePCS()">
         </div>
 
         <p class="credits"><small>Figure Skating Technical Element Score Calculator. <a href="https://github.com/maxpinheiro/tes-calculator">GitHub</a>.</small></p>
